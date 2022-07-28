@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/create', (req, res) => {
-    if(req.body.url){
+    if(req.body.url && req.body.url.startsWith('http')){
         let uuid = uuidv4();
         config['urls'][uuid] = req.body.url
         fs.writeFileSync('config.json', JSON.stringify(config, null, 4));
